@@ -43,12 +43,16 @@ public class MainThread extends JFrame {
         DataBuffer dest = screenBuffer.getRaster().getDataBuffer();
         screen = ((DataBufferInt)dest).getData();
 
+        //初始化相机
+        Camera myCamera = new Camera(0,0,0);
         //主循环
         while (true){
             //操控区
             screen[0] = (163 << 16) | (216 << 8) | 239; //天蓝色
             for(int i = 1; i < screenSize; i+=i)
                 System.arraycopy(screen, 0, screen, i, screenSize - i >= i ? i : screenSize - i);
+
+
 
             //把图像发送到显存
             panel.getGraphics().drawImage(screenBuffer, 0, 0, this);
