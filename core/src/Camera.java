@@ -1,12 +1,12 @@
 public class Camera {
     //相机位置
-    public Vector3D position;
+    public static Vector3D position;
 
     //相机方向
-    public Vector3D direction;
+    public static Vector3D direction;
 
     //上方向
-    public Vector3D upDirection = new Vector3D(0,1,0);
+    public static Vector3D upDirection = new Vector3D(0,1,0);
 
     //判断视角走位，观察方向的变量
     public static boolean MOVE_FORWARD, MOVE_BACKWARD, SLIDE_LEFT, SLIDE_RIGHT, LOOK_UP, LOOK_DOWN, LOOK_RIGHT, LOOK_LEFT;
@@ -24,12 +24,11 @@ public class Camera {
     public static float moveSpeed = 0.03f;
 
     //初始化
-    Camera(float x,float y,float z){
+    public static void init(float x, float y, float z){
         position = new Vector3D(x,y,z);
-        direction = new Vector3D(0,0,-1);
+        direction = new Vector3D(0, 0, 1);
     }
-
-    public void update(){
+    public static void update(){
         //向上看
         if(LOOK_UP){
             X_angle += turnRate;
@@ -40,7 +39,7 @@ public class Camera {
         //向下看
         if(LOOK_DOWN){
             X_angle -= turnRate;
-            if(X_angle > 271 && X_angle < 180)
+            if(X_angle < 271 && X_angle > 180)
                 X_angle = -89;
         }
 

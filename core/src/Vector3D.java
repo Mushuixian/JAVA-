@@ -7,11 +7,17 @@ public class Vector3D {
         this.z = z;
     }
 
-    //复制坐标
-    public void set(Vector3D v){
-        this.x = v.x;;
-        this.y = v.y;
-        this.z = v.z;
+    //把 x, y, z赋值为另一个  Vector3D 的 x, y, z
+    public void set(Vector3D v) {
+        this.x=v.x;
+        this.y=v.y;
+        this.z=v.z;
+    }
+
+    public void set(float x , float y, float z) {
+        this.x=x;
+        this.y=y;
+        this.z=z;
     }
 
     //向量加法
@@ -47,8 +53,12 @@ public class Vector3D {
     }
 
     //向量点积,结果判断向量的相似程度
-    public float dot(Vector3D v1, Vector3D v2){
-        return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
+    public float dot(Vector3D v2){
+        return this.x*v2.x + this.y*v2.y + this.z*v2.z;
+    }
+
+    public float dot(float x, float y, float z){
+        return this.x*x + this.y*y + this.z*z;
     }
 
     //向量叉积，求一个和各个向量都垂直的向量
@@ -83,24 +93,26 @@ public class Vector3D {
     }
 
     //绕 Y 轴旋转矢量，使其顺时针旋转指定角度
-    public void  rotate_Y(int angle){
+    public void rotate_Y(int angle) {
+
         float sin = LookupTables.sin[angle];
         float cos = LookupTables.cos[angle];
         float old_X = x;
         float old_Z = z;
-        x = cos*old_X - sin*old_Z;
-        z = sin*old_X + cos*old_Z;
+        x = cos * old_X - sin * old_Z;
+        z = sin * old_X + cos * old_Z;
     }
 
-    //绕 X 轴旋转矢量，使其顺时针旋转指定角度
-    public void rotate_X(int angle){
+    public void rotate_X(int angle) {
+
         float sin = LookupTables.sin[angle];
         float cos = LookupTables.cos[angle];
         float old_Y = y;
         float old_Z = z;
-        y = cos*old_Y - sin*old_Z;
-        z = sin*old_Y + cos*old_Z;
+        y = cos * old_Y - sin * old_Z;
+        z = sin * old_Y + cos * old_Z;
     }
+
 
     //绕 Z 轴旋转矢量，使其顺时针旋转指定角度
     public void rotate_Z(int angle){
